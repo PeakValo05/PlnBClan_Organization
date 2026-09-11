@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Entity representing a contact request submitted through the contact form
+// Maps to the "contact_requests" table in the database
 @Entity
 @Table(name = "contact_requests")
 public class ContactRequest {
