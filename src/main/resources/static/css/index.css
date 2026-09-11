@@ -1,22 +1,13 @@
 body {
     background-image: url("/images/PlnB BG.png");
-    background-size: 110% auto;
-    background-position: center -900px;
+    background-size: cover;
+    background-position: center bottom;
     background-repeat: no-repeat;
 
     min-height: 100vh;
     margin: 0;
 
     background-color: #07111F;
-}
-.logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 20px;
-
 }
 .top-bar {
     display: flex;
@@ -35,15 +26,16 @@ body {
     flex: 1;
     padding-right: 20px;
 }
-.content-container {
-    display: flex;
-    flex-direction: column;
+
+.discord-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
     margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 420px;
-    height: 500px;
-    background-color: #07111F;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.discord-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
