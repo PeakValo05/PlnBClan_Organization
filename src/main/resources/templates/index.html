@@ -99,37 +99,59 @@
                     Please enter your message below and we will get back to you as soon as possible.
                 </p>
 
-                <!-- Roblox Username -->
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Your Roblox Username">
-
-                <!-- Discord Username -->
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Your Discord Username">
-
-                <!-- Inquiry Type -->
-                <select class="form-select">
-                    <option value="general">General Inquiry</option>
-                    <option value="support">Support</option>
-                    <option value="feedback">Feedback</option>
-                    <option value="other">Other</option>
-                </select>
-
-                <!-- Message -->
-                <textarea
-                    class="form-control"
-                    rows="4"
-                    placeholder="Enter Your Message"></textarea>
-
                 <!-- Submit Button -->
-                <input
-                    type="submit"
-                    value="Submit"
-                    class="btn btn-outline-light w-100">
+<form th:action="@{/contact/submit}" method="post">
+
+    <div class="mb-3">
+
+    <!-- Roblox Username -->
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Your Roblox Username"
+        name="robloxUsername"
+        required>
+    </div>
+
+    <!-- Discord Username -->
+    <div class="mb-3">
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Your Discord Username"
+        name="discordUsername"
+        required>
+    </div>
+
+    <!-- Inquiry Type -->
+    <div class="mb-3">
+    <select class="form-select" name="inquiryType" required>
+        <option value="general">General Inquiry</option>
+        <option value="support">Support</option>
+        <option value="feedback">Feedback</option>
+        <option value="other">Other</option>
+    </select>
+    </div>
+
+    <!-- Message -->
+    <div class="mb-3">
+    <textarea
+        class="form-control"
+        rows="4"
+        placeholder="Enter Your Message"
+        name="message"
+        required></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mb-3">
+    <input
+        type="submit"
+        value="Submit"
+        class="btn btn-outline-light w-100">
+    </div>
+
+</form>
 
             </div>
 
