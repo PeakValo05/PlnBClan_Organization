@@ -1,0 +1,20 @@
+body {
+    background-image: url("/images/players-form-bg.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #07111F;
+}
+.home-icon, .discord-icon {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.home-icon:hover, .discord-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
