@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.plnb.clan.model.ClanData;
 import com.plnb.clan.model.ClanMember;
@@ -14,6 +15,7 @@ import com.plnb.clan.model.DiamondContribution;
 import com.plnb.clan.model.RobloxUser;
 import com.plnb.clan.service.BigGamesService;
 import com.plnb.clan.service.RobloxService;
+
 
 @Controller
 public class ClanPlayers {
@@ -41,7 +43,21 @@ public class ClanPlayers {
         List<RobloxUser> robloxUsers =
                 robloxService.getUsers(userIds);
 
-        List<ClanPlayerView> players = new ArrayList<>();
+        List<ClanPlayerView> members = new ArrayList<>();
+        List<ClanPlayerView> leaders = new ArrayList<>();
+        List<ClanPlayerView> officers = new ArrayList<>();
+
+        ClanPlayerView owner = new ClanPlayerView();
+
+
+        // Manually add the owner to the leaders list
+        owner.setUserId(123456789L);
+        owner.setUsername("BadJeepingB");
+        owner.setDisplayName("👑 BadJeepingB");
+
+        leaders.add(owner);
+        officers.add(owner);
+        members.add(owner);
 
         for (ClanMember member : clanData.getMembers()) {
 
@@ -81,13 +97,32 @@ public class ClanPlayers {
 
                 player.setDiamonds(diamonds);
 
-                players.add(player);
+                System.out.println(
+    player.getDisplayName() + " - Permission Level: " + player.getPermissionLevel()
+);
+
+                if (player.getPermissionLevel() == 90){
+                    leaders.add(player);
+                } else if (player.getPermissionLevel() == 2){
+                    officers.add(player);
+                } else {
+                    members.add(player);
+                }
             }
         }
 
         // AFTER all players have been processed
-        model.addAttribute("players", players);
+        model.addAttribute("members", members);
+        model.addAttribute("leaders", leaders);
+        model.addAttribute("officers", officers);
 
         return "clan-players";
     }
+
+
+    @GetMapping("/test-clan")
+@ResponseBody
+public ClanData testClan() {
+    return bigGamesService.getClanDataObject();
+}
 }

@@ -8,7 +8,7 @@
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet">
-
+<!-- Bootstrap JS and Google Fonts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +19,103 @@
 </head>
 <body>
 
+
+    <!-- HEADER SECTION -->
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-6">
+            
+            <!-- HEADER SECTION -->
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-start text-light p-3 p-md-4"
+                 style="
+                    background-color: #07111F;
+                    min-height: 200px;
+                    box-shadow:
+                        0 0 12px rgba(0, 174, 255, 0.45),
+                        0 0 30px rgba(0, 110, 255, 0.20);
+                 ">
+
+            <!-- IMAGE SECTION: INCLUDES ORGANIZATION LOGO -->
+            <div class="img-fluid col-6 col-md-4 col-lg-3 mb-3 justify-content-center d-flex align-items-center" 
+                        style="height: 200px; margin-top: 15px; background-color: #03152c; box-shadow: 0 0 12px rgba(20, 160, 224, 0.45), 0 0 30px rgba(33, 89, 161, 0.5);">
+                <img src="/images/plnb-logo.png"
+                     alt="PlnB Logo"
+                     class="img-fluid mb-3 mb-md-0"
+                     style="max-width: 200px;">
+            </div>
+
+            <!-- TEXT SECTION: INCLUDES ORGANIZATION NAME AND SLOGAN -->
+            <div class="d-flex flex-column">
+                <p class="fw-bold text-center text-md-start ms-3 mb-auto"
+                   style="
+                        font-family: 'Poppins', sans-serif;
+                        font-size: clamp(28px, 4vw, 45px);
+                   ">
+                    PlnB Organization
+                </p>
+                <P class="text-center text-md-start ms-3 mb-auto" 
+                                style="font-family: 'Poppins', sans-serif; font-size: clamp(16px, 2vw, 15px); 
+                                letter-spacing: 3px; color: #67DDFF;">Together We Hatch Bigger</P>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        
+
+    
+
 <!-- PAGE CONTENT: INCLUDES CLAN MEMBERS AND DIAMONDS  -->
 <div class="container-fluid py-4">
 
     <div class="row justify-content-between gap-2 flex-wrap mt-4 mx-auto" style="max-width: 1200px;">
+        
 
-        <!-- LEFT CARD -->
+
+        <div class="col-12 col-md-6 col-lg-5" style="flex: 1 1 45%;">
+            <div class="p-3 d-flex flex-column align-items-center" 
+                 style="
+                        background-color: #07111F; 
+                        height: 700px; 
+                        overflow-y: auto; 
+                        border-radius: 20px;
+                        box-shadow: 0 0 12px rgba(0, 174, 255, 0.45), 0 0 30px rgba(0, 110, 255, 0.20);">
+                <h2 class="text-center text-white fs-4">
+                    Leaders
+                </h2>
+                <hr class="text-white w-50">
+                <div class="w-100 px-3">
+
+                 
+                    <div th:each="leader : ${leaders}" class="leader-card mb-3 text-center accordion-flush 
+                                flex-column align-items-center border rounded p-3" 
+                                
+                                style="background-color: #0A1A2F;">
+
+                        <h5 class="text-white mb-0"
+                            th:text="${leader.displayName}">
+                            Display Name
+                        </h5>
+
+
+                        <p class="text-secondary mb-0">
+                            @<span th:text="${leader.username}">
+                                username
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- CLAN MEMBERS CARD -->
         <div class="col-12 col-md-6 col-lg-5" style="flex: 1 1 45%;">
             <div class="p-3 d-flex flex-column align-items-center"
                  style="
@@ -32,6 +123,7 @@
                     height: 700px;
                     overflow-y: auto;
                     border-radius: 20px;
+                    box-shadow: 0 0 12px rgba(0, 174, 255, 0.45), 0 0 30px rgba(0, 110, 255, 0.20);
                  ">
 
                 <h2 class="text-center text-white fs-4">
@@ -42,19 +134,23 @@
 
                 <div class="w-100 px-3">
 
-                    <div th:each="player : ${players}"
-                         class="mb-3 text-center">
+                    <div th:each="member : ${members}" class="member-card mb-3 d-flex text-center flex-column align-items-center border rounded p-3" 
+                         style="background-color: #0A1A2F;">
+                                                                            
 
                         <h5 class="text-white mb-0"
-                            th:text="${player.displayName}">
+                            th:text="${member.displayName}">
                             Display Name
                         </h5>
 
                         <p class="text-secondary mb-0">
-                            @<span th:text="${player.username}">
+                            @<span th:text="${member.username}">
                                 username
                             </span>
+                            
                         </p>
+
+                        <span th:text="${member.diamonds} + ' Diamonds'" class="text-white"></span>
 
                     </div>
 
@@ -62,37 +158,6 @@
 
             </div>
         </div>
-
-
-        <!-- RIGHT CARD -->
-        <div class="col-12 col-md-6 col-lg-5" style="flex: 1 1 45%;">
-            <div class="p-3 d-flex flex-column align-items-center"
-                 style="
-                    background-color: #07111F;
-                    height: 700px;
-                    overflow-y: auto;
-                    border-radius: 20px;
-                 ">
-
-                <h2 class="text-center text-white fs-4">
-                    Diamonds
-                </h2>
-
-                <hr class="text-white w-50">
-                 <div class="w-100 px-3">
-
-                    <div th:each="player : ${players}"
-
-                         class="mb-3 text-center">
-                        
-                            <h5 class="text-white mb-0" th:text="${player.displayName}">
-                                Player Name
-                            </h5>
-
-                        
-                           <span th:text="${player.diamonds} + ' Diamonds'" class="text-white" style="letter-spacing: 2px">
-                                0
-                            </span>
 
                     </div>
                  </div>
@@ -113,20 +178,20 @@
         <div class="col d-flex align-items-center gap-2">
 
             <a href="/">
-                <img src="/images/home-icon.png"
+                <img src="/images/home-nav.png"
                      alt="Home"
                      class="home-icon img-fluid"
-                     width="50">
+                     width="80">
             </a>
 
             <a href="https://discord.gg/akzxgu8fd"
                target="_blank"
                rel="noopener noreferrer">
 
-                <img src="/images/discord-icon.png"
+                <img src="/images/discord-nav.png"
                      alt="Discord"
                      class="discord-icon img-fluid"
-                     width="50">
+                     width="100">
 
             </a>
 
