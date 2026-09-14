@@ -28,14 +28,25 @@ body {
 }
 
 .discord-icon {
-    width: 60px;
-    height: 60px;
+
     object-fit: contain;
     margin-top: 20px;
     transition: transform 0.3s ease;
 }
 
 .discord-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.top-nav-button {
+    object-fit: contain;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+    width: 100px; /* Adjust the width as needed */
+    margin-bottom: 20px; /* Adjust the bottom margin as needed */
+}
+
+.top-nav-button:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
