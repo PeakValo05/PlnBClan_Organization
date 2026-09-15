@@ -17,6 +17,7 @@ import com.plnb.clan.service.BigGamesService;
 import com.plnb.clan.service.RobloxService;
 
 
+
 @Controller
 public class ClanPlayers {
 
@@ -33,7 +34,27 @@ public class ClanPlayers {
     @GetMapping("/clan-players")
     public String getClanPlayersPage(Model model) {
 
+
+
         ClanData clanData = bigGamesService.getClanDataObject();
+
+        long currentDiamonds = clanData.getDepositedDiamonds();
+        long currentGuildLevel = clanData.getGuildLevel();
+        
+
+
+        // Calculate the maximum number of players and the current number of players in the clan
+        int maxPlayers = clanData.getMemberCapacity();
+        int currentPlayers = clanData.getMembers().size() + 1; // Including the owner
+
+        // Add the calculated player counts to the model for the view to use
+        model.addAttribute("maxPlayers", maxPlayers);
+        model.addAttribute("currentPlayers", currentPlayers);
+        model.addAttribute("currentDiamonds", currentDiamonds);
+        model.addAttribute("guildLevel", currentGuildLevel);
+
+
+        System.out.println(bigGamesService.getClanData());
 
         List<Long> userIds = clanData.getMembers()
                 .stream()
@@ -51,7 +72,7 @@ public class ClanPlayers {
 
 
         // Manually add the owner to the leaders list
-        owner.setUserId(123456789L);
+        owner.setUserId(3481727973L);
         owner.setUsername("BadJeepingB");
         owner.setDisplayName("👑 BadJeepingB");
 
@@ -81,25 +102,32 @@ public class ClanPlayers {
                 player.setPermissionLevel(member.getPermissionLevel());
                 player.setJoinTime(member.getJoinTime());
 
-                long diamonds = 0;
 
-                for (DiamondContribution contribution :
 
-                        clanData.getDiamondContributions().getAllTime().getData()) {
+                // Calculate diamonds for the member and the owner
+long diamonds = 0;
+long ownerDiamonds = 0;
 
-                    if (contribution.getUserID()
-                            .equals(member.getUserID())) {
+for (DiamondContribution contribution :
+        clanData.getDiamondContributions().getAllTime().getData()) {
 
-                        diamonds = contribution.getDiamonds();
-                        break;
-                    }
-                }
+    // MEMBER
+    if (contribution.getUserID().equals(member.getUserID())) {
+        diamonds = contribution.getDiamonds();
+    }
 
-                player.setDiamonds(diamonds);
+    // OWNER
+    if (contribution.getUserID().equals(owner.getUserId())) {
+        ownerDiamonds = contribution.getDiamonds();
+    }
 
-                System.out.println(
-    player.getDisplayName() + " - Permission Level: " + player.getPermissionLevel()
-);
+
+player.setDiamonds(diamonds);
+owner.setDiamonds(ownerDiamonds);
+        }
+    
+
+        
 
                 if (player.getPermissionLevel() == 90){
                     leaders.add(player);
@@ -125,4 +153,6 @@ public class ClanPlayers {
 public ClanData testClan() {
     return bigGamesService.getClanDataObject();
 }
+
+
 }

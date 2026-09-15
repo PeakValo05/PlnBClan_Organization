@@ -8,6 +8,26 @@ public class ClanData {
     private List<ClanMember> Members;
     private Long DepositedDiamonds;
     private DiamondContributionData DiamondContributions;
+    private Integer MemberCapacity;
+    private Integer OfficerCapacity;
+    private Integer GuildLevel;
+
+
+    public Integer getMemberCapacity() {
+        return MemberCapacity;
+    }
+
+    public void setMemberCapacity(Integer MemberCapacity) {
+        this.MemberCapacity = MemberCapacity;
+    }
+
+    public Integer getOfficerCapacity() {
+        return OfficerCapacity;
+    }
+
+    public void setOfficerCapacity(Integer OfficerCapacity) {
+        this.OfficerCapacity = OfficerCapacity;
+    }
 
     public String getName() {
         return Name;
@@ -42,6 +62,13 @@ public class ClanData {
         DiamondContributions = diamondContributions;
     }
 
+    public Integer getGuildLevel() {
+        return GuildLevel;
+    }
+
+    public void setGuildLevel(Integer GuildLevel) {
+        this.GuildLevel = GuildLevel;
+    }
     public Object getDiamondContributionsData() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

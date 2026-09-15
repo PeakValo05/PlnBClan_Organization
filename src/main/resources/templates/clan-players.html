@@ -10,11 +10,18 @@
         rel="stylesheet">
 <!-- Bootstrap JS and Google Fonts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/css/clan-players.css">
+<link rel="stylesheet" href="/css/fonts.css">
     <title>Clan Members</title>
 </head>
 <body>
@@ -23,7 +30,8 @@
     <!-- HEADER SECTION -->
 <div class="container-fluid mt-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-6">
+        <div class="col-12 col-md-12 col-lg-8">
+            
             
             <!-- HEADER SECTION -->
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-start text-light p-3 p-md-4"
@@ -32,7 +40,7 @@
                     min-height: 200px;
                     box-shadow:
                         0 0 12px rgba(0, 174, 255, 0.45),
-                        0 0 30px rgba(0, 110, 255, 0.20);
+                        0 0 30px rgba(0, 110, 255, 0.20); border-radius: 20px;
                  ">
 
             <!-- IMAGE SECTION: INCLUDES ORGANIZATION LOGO -->
@@ -45,17 +53,71 @@
             </div>
 
             <!-- TEXT SECTION: INCLUDES ORGANIZATION NAME AND SLOGAN -->
-            <div class="d-flex flex-column">
-                <p class="fw-bold text-center text-md-start ms-3 mb-auto"
+            <div class="d-flex flex-column " style="width: 100%; ">
+                <p class="fw-bold text-md-start ms-3 mb-auto me-auto ms-auto"
                    style="
-                        font-family: 'Poppins', sans-serif;
-                        font-size: clamp(28px, 4vw, 45px);
-                   ">
+                        font-family: 'Luckiest Guy', sans-serif;
+                        font-size: clamp(28px, 4vw, 65px);
+                    letter-spacing: 3px;" >
                     PlnB Organization
                 </p>
-                <P class="text-center text-md-start ms-3 mb-auto" 
-                                style="font-family: 'Poppins', sans-serif; font-size: clamp(16px, 2vw, 15px); 
-                                letter-spacing: 3px; color: #67DDFF;">Together We Hatch Bigger</P>
+                <P class="text-center text-md-start ms-3 mb-auto ms-auto me-auto" 
+                                style="font-family: 'Luckiest Guy', sans-serif; font-size: clamp(16px, 2vw, 20px); 
+                                letter-spacing: 6px; color: #67DDFF;">Together We Hatch Bigger</P>
+
+
+                <!-- DIVIDER -->
+                <hr class="text-white p-3 ms-4" style="max-width: 1200px;">
+
+                <!-- MEMBERS ICON SECTION -->
+        <div class="d-flex flex-row align-items-start mb-3">
+
+
+            <!-- Members Section -->
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 w-100 mb-3">
+            <!-- MEMBERS ICON -->
+                <img src="/images/members-icon.png"
+                     alt="PlnB Banner"
+                     class="img-fluid mb-2 ms-2"
+                     style="max-width: 60px;">
+
+                     <p class="mb-0">
+                        <span th:text="${currentPlayers} + ' / ' + ${maxPlayers} + ' Members'" class="fw-bold"></span>
+                     </p>
+                </div>
+
+         
+            <hr class="text-white" style="width: 20%; transform: rotate(90deg);">
+
+
+            <!-- Diamonds deposited -->
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 w-100 mb-3">
+            <img src="/images/diamond-icon.png"
+                 alt="Diamonds Icon"
+                 class="img-fluid mb-3 ms-4"
+                 style="max-width: 60px;">
+                 <p class="mb-0">
+                    <span th:text="${#numbers.formatInteger(currentDiamonds, 1, 'COMMA')} + ' Diamonds'" class="fw-bold"></span>
+                 </p>
+            </div>
+
+
+            <hr class="text-white" style="width: 20%; transform: rotate(90deg);">
+
+
+            <!-- Clan Level -->
+<div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 w-100 mb-3">
+    <img src="/images/crown-icon.png"
+         alt="Crown Icon"
+         class="img-fluid mb-3"
+         style="max-width: 50px;">
+
+    <p class="mb-0">
+        <span th:text="'Clan Level ' + ${guildLevel}" class="fw-bold"></span>
+    </p>
+</div>
+            </div>
+            
 
                 </div>
             </div>
@@ -75,7 +137,7 @@
         
 
 
-        <div class="col-12 col-md-6 col-lg-5" style="flex: 1 1 45%;">
+        <div class="col-12 col-md-6 col-lg-5 mt-5" style="flex: 1 1 45%;">
             <div class="p-3 d-flex flex-column align-items-center" 
                  style="
                         background-color: #07111F; 
@@ -116,7 +178,7 @@
 
 
         <!-- CLAN MEMBERS CARD -->
-        <div class="col-12 col-md-6 col-lg-5" style="flex: 1 1 45%;">
+        <div class="col-12 col-md-6 col-lg-5 mt-5" style="flex: 1 1 45%;">
             <div class="p-3 d-flex flex-column align-items-center"
                  style="
                     background-color: #07111F;
@@ -158,6 +220,7 @@
 
             </div>
         </div>
+   
 
                     </div>
                  </div>
@@ -169,7 +232,7 @@
 </div>
 </div>
 <!-- FOOTER: HOME BTN, DISCORD LINK, AND LOGO -->
-<div class="container-fluid py-3 position-fixed bottom-0"
+<div class="container-fluid py-3 position-absolute mt-auto"
      style="background-color: #07111F; z-index: 1000;">
 
     <div class="row align-items-center">
